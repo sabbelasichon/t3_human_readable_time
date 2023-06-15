@@ -17,12 +17,13 @@ use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
 
-final class TimeAgoViewHelper extends AbstractViewHelper
+final class HumanReadableTimeViewHelper extends AbstractViewHelper
 {
     use CompileWithRenderStatic;
 
     public function initializeArguments(): void
     {
+        $this->registerArgument('languageKey', 'string', 'Language key ("dk" for example) or "default" to use for this translation. If this argument is empty, we use the current language');
         $this->registerArgument('from', \DateTimeInterface::class, 'Some date object', true);
         $this->registerArgument('to', \DateTimeInterface::class, 'Some date object');
     }
@@ -34,7 +35,8 @@ final class TimeAgoViewHelper extends AbstractViewHelper
     ) {
         return GeneralUtility::makeInstance(DateTimeFormatterInterface::class)->formatDiff(
             $arguments['from'],
-            $arguments['to']
+            $arguments['to'],
+            $arguments['languageKey']
         );
     }
 }

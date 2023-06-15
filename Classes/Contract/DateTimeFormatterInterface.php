@@ -16,4 +16,9 @@ use DateTimeInterface;
 interface DateTimeFormatterInterface
 {
     public function formatDiff(DateTimeInterface $from, DateTimeInterface $to = null): string;
+
+    /**
+     * @param int|string|null|DateTimeInterface $dateTime
+     */
+    public function transformToDateTimeObject($dateTime = null): DateTimeInterface;
 }

@@ -16,9 +16,9 @@ use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 final class ExtbaseLocalizationTranslator implements TranslatorInterface
 {
-    public function translate(string $key, array $arguments): string
+    public function translate(string $key, array $arguments, string $locale = null): string
     {
-        $translation = LocalizationUtility::translate($key, 'T3HumanReadableTime', $arguments);
+        $translation = LocalizationUtility::translate($key, 'T3HumanReadableTime', $arguments, $locale);
 
         if ($translation === null) {
             throw new \UnexpectedValueException(sprintf('No translation found for key "%s"', $key));

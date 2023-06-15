@@ -15,7 +15,7 @@ use Ssch\T3HumanReadableTime\Contract\TranslatorInterface;
 
 final class TestTranslator implements TranslatorInterface
 {
-    public function translate(string $key, array $arguments): string
+    public function translate(string $key, array $arguments, string $locale = null): string
     {
         return $key;
     }

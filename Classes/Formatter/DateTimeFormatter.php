@@ -25,7 +25,7 @@ final class DateTimeFormatter implements DateTimeFormatterInterface
         $this->translator = $translator;
     }
 
-    public function formatDiff(DateTimeInterface $from, DateTimeInterface $to = null): string
+    public function formatDiff(DateTimeInterface $from, DateTimeInterface $to = null, string $locale = null): string
     {
         if ($to === null) {
             $to = new \DateTimeImmutable('now');
@@ -49,24 +49,45 @@ final class DateTimeFormatter implements DateTimeFormatterInterface
 
             $count = ObjectAccess::getProperty($diff, $attribute);
             if (is_int($count) && $count !== 0) {
-                return $this->doGetDiffMessage($count, (bool) $diff->invert, $unit);
+                return $this->doGetDiffMessage($count, (bool) $diff->invert, $unit, $locale);
             }
         }
 
         return $this->getEmptyDiffMessage();
     }
 
-    private function doGetDiffMessage(int $count, bool $invert, string $unit): string
+    private function doGetDiffMessage(int $count, bool $invert, string $unit, string $locale = null): string
     {
         $id = sprintf('diff.%s.%s.%s', $invert ? 'ago' : 'in', $unit, $count === 1 ? 'single' : 'plural');
 
         return $this->translator->translate($id, [
             '%count%' => $count,
-        ]);
+        ], $locale);
     }
 
     private function getEmptyDiffMessage(): string
     {
         return $this->translator->translate('diff.empty', []);
+    }
+
+    public function transformToDateTimeObject($dateTime = null): DateTimeInterface
+    {
+        if ($dateTime instanceof DateTimeInterface) {
+            return $dateTime;
+        }
+
+        if(is_string($dateTime)) {
+            $dateTime = date('Y-m-d H:i:s', (int)strtotime($dateTime));
+        }
+
+        if (is_int($dateTime)) {
+            $dateTime = date('Y-m-d H:i:s', $dateTime);
+        }
+
+        if (null === $dateTime) {
+            $dateTime = 'now';
+        }
+
+        return new \DateTimeImmutable($dateTime);
     }
 }

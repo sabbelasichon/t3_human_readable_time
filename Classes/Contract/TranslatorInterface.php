@@ -16,5 +16,5 @@ interface TranslatorInterface
     /**
      * @param array<mixed> $arguments
      */
-    public function translate(string $key, array $arguments): string;
+    public function translate(string $key, array $arguments, string $locale = null): string;
 }

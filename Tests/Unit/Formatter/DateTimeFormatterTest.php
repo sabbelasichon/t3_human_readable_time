@@ -30,8 +30,8 @@ final class DateTimeFormatterTest extends TestCase
      */
     public function testFormatDiff(string $fromString, ?string $toString, string $expected): void
     {
-        $from = new DateTimeImmutable(date('Y-m-d H:i:s', (int) strtotime($fromString)));
-        $to = $toString !== null ? new DateTimeImmutable(date('Y-m-d H:i:s', (int) strtotime($toString))) : null;
+        $from = $this->subject->transformToDateTimeObject($fromString);
+        $to = $this->subject->transformToDateTimeObject($toString);
 
         self::assertSame($expected, $this->subject->formatDiff($from, $to));
     }

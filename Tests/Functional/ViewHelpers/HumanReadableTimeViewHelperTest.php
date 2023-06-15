@@ -12,18 +12,21 @@ declare(strict_types=1);
 namespace Ssch\T3HumanReadableTime\Tests\Functional\ViewHelpers;
 
 use DateTimeImmutable;
+use Ssch\T3HumanReadableTime\Contract\DateTimeFormatterInterface;
 use TYPO3\CMS\Core\Localization\LanguageServiceFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
-final class TimeAgoViewHelperTest extends FunctionalTestCase
+final class HumanReadableTimeViewHelperTest extends FunctionalTestCase
 {
+    private DateTimeFormatterInterface $datetimeFormatter;
+
     protected function setUp(): void
     {
-        $this->initializeDatabase = false;
         $this->testExtensionsToLoad = ['typo3conf/ext/t3_human_readable_time'];
         parent::setUp();
+        $this->datetimeFormatter = $this->get(DateTimeFormatterInterface::class);
         $GLOBALS['LANG'] = GeneralUtility::makeInstance(LanguageServiceFactory::class)->create('default');
     }
 
@@ -33,8 +36,8 @@ final class TimeAgoViewHelperTest extends FunctionalTestCase
     public function testFormatDiff(string $fromString, ?string $toString, string $expected)
     {
         // Arrange
-        $from = new DateTimeImmutable(date('Y-m-d H:i:s', (int) strtotime($fromString)));
-        $to = $toString !== null ? new DateTimeImmutable(date('Y-m-d H:i:s', (int) strtotime($toString))) : null;
+        $from = $this->datetimeFormatter->transformToDateTimeObject($fromString);
+        $to = $this->datetimeFormatter->transformToDateTimeObject($toString);
 
         $view = GeneralUtility::makeInstance(StandaloneView::class);
         $view->assignMultiple([
@@ -43,11 +46,31 @@ final class TimeAgoViewHelperTest extends FunctionalTestCase
         ]);
         $view->setTemplateSource(
             '{namespace time=Ssch\T3HumanReadableTime\ViewHelpers}' . LF .
-            '<time:timeAgo from="{from}" to="{to}" />'
+            '<time:humanReadableTime from="{from}" to="{to}" />'
         );
 
         // Assert
         self::assertSame(trim($expected), trim($view->render()));
+    }
+
+    public function testFormatDiffWithExplicitLocale()
+    {
+        // Arrange
+        $from = $this->datetimeFormatter->transformToDateTimeObject('- 5 years');
+        $to = $this->datetimeFormatter->transformToDateTimeObject('now');
+
+        $view = GeneralUtility::makeInstance(StandaloneView::class);
+        $view->assignMultiple([
+            'from' => $from,
+            'to' => $to,
+        ]);
+        $view->setTemplateSource(
+            '{namespace time=Ssch\T3HumanReadableTime\ViewHelpers}' . LF .
+            '<time:humanReadableTime from="{from}" to="{to}" languageKey="de" />'
+        );
+
+        // Assert
+        self::assertSame(trim('vor 5 Jahren'), trim($view->render()));
     }
 
     /**

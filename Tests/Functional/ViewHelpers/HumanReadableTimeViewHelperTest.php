@@ -11,7 +11,6 @@ declare(strict_types=1);
 
 namespace Ssch\T3HumanReadableTime\Tests\Functional\ViewHelpers;
 
-use DateTimeImmutable;
 use Ssch\T3HumanReadableTime\Contract\DateTimeFormatterInterface;
 use TYPO3\CMS\Core\Localization\LanguageServiceFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -33,7 +32,7 @@ final class HumanReadableTimeViewHelperTest extends FunctionalTestCase
     /**
      * @dataProvider provideFormatDiffs
      */
-    public function testFormatDiff(string $fromString, ?string $toString, string $expected)
+    public function testFormatDiff(string $fromString, ?string $toString, string $expected): void
     {
         // Arrange
         $from = $this->datetimeFormatter->transformToDateTimeObject($fromString);
@@ -53,7 +52,7 @@ final class HumanReadableTimeViewHelperTest extends FunctionalTestCase
         self::assertSame(trim($expected), trim($view->render()));
     }
 
-    public function testFormatDiffWithExplicitLocale()
+    public function testFormatDiffWithExplicitLocale(): void
     {
         // Arrange
         $from = $this->datetimeFormatter->transformToDateTimeObject('- 5 years');

@@ -56,6 +56,27 @@ final class DateTimeFormatter implements DateTimeFormatterInterface
         return $this->getEmptyDiffMessage();
     }
 
+    public function transformToDateTimeObject($dateTime = null): DateTimeInterface
+    {
+        if ($dateTime instanceof DateTimeInterface) {
+            return $dateTime;
+        }
+
+        if (is_string($dateTime)) {
+            $dateTime = date('Y-m-d H:i:s', (int) strtotime($dateTime));
+        }
+
+        if (is_int($dateTime)) {
+            $dateTime = date('Y-m-d H:i:s', $dateTime);
+        }
+
+        if ($dateTime === null) {
+            $dateTime = 'now';
+        }
+
+        return new \DateTimeImmutable($dateTime);
+    }
+
     private function doGetDiffMessage(int $count, bool $invert, string $unit, string $locale = null): string
     {
         $id = sprintf('diff.%s.%s.%s', $invert ? 'ago' : 'in', $unit, $count === 1 ? 'single' : 'plural');
@@ -68,26 +89,5 @@ final class DateTimeFormatter implements DateTimeFormatterInterface
     private function getEmptyDiffMessage(): string
     {
         return $this->translator->translate('diff.empty', []);
-    }
-
-    public function transformToDateTimeObject($dateTime = null): DateTimeInterface
-    {
-        if ($dateTime instanceof DateTimeInterface) {
-            return $dateTime;
-        }
-
-        if(is_string($dateTime)) {
-            $dateTime = date('Y-m-d H:i:s', (int)strtotime($dateTime));
-        }
-
-        if (is_int($dateTime)) {
-            $dateTime = date('Y-m-d H:i:s', $dateTime);
-        }
-
-        if (null === $dateTime) {
-            $dateTime = 'now';
-        }
-
-        return new \DateTimeImmutable($dateTime);
     }
 }

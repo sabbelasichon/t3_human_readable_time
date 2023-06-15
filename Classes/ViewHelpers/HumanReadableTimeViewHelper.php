@@ -23,7 +23,11 @@ final class HumanReadableTimeViewHelper extends AbstractViewHelper
 
     public function initializeArguments(): void
     {
-        $this->registerArgument('languageKey', 'string', 'Language key ("dk" for example) or "default" to use for this translation. If this argument is empty, we use the current language');
+        $this->registerArgument(
+            'languageKey',
+            'string',
+            'Language key ("dk" for example) or "default" to use for this translation. If this argument is empty, we use the current language'
+        );
         $this->registerArgument('from', \DateTimeInterface::class, 'Some date object', true);
         $this->registerArgument('to', \DateTimeInterface::class, 'Some date object');
     }
@@ -32,7 +36,7 @@ final class HumanReadableTimeViewHelper extends AbstractViewHelper
         array $arguments,
         \Closure $renderChildrenClosure,
         RenderingContextInterface $renderingContext
-    ) {
+    ): string {
         return GeneralUtility::makeInstance(DateTimeFormatterInterface::class)->formatDiff(
             $arguments['from'],
             $arguments['to'],

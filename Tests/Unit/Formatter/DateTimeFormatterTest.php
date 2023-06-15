@@ -11,7 +11,6 @@ declare(strict_types=1);
 
 namespace Ssch\T3HumanReadableTime\Tests\Unit\Formatter;
 
-use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
 use Ssch\T3HumanReadableTime\Formatter\DateTimeFormatter;
 use Ssch\T3HumanReadableTime\Translator\TestTranslator;

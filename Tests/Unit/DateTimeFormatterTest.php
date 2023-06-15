@@ -11,7 +11,6 @@ declare(strict_types=1);
 
 namespace Ssch\T3HumanReadableTime\Tests\Unit;
 
-use DateTime;
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
 use Ssch\T3HumanReadableTime\DateTimeFormatter;
@@ -32,7 +31,7 @@ final class DateTimeFormatterTest extends TestCase
     public function testFormatDiff(string $fromString, ?string $toString, string $expected): void
     {
         $from = new DateTimeImmutable(date('Y-m-d H:i:s', (int) strtotime($fromString)));
-        $to = $toString !== null ? new DateTime(date('Y-m-d H:i:s', (int) strtotime($toString))) : null;
+        $to = $toString !== null ? new DateTimeImmutable(date('Y-m-d H:i:s', (int) strtotime($toString))) : null;
 
         self::assertSame($expected, $this->subject->formatDiff($from, $to));
     }
@@ -42,20 +41,21 @@ final class DateTimeFormatterTest extends TestCase
      */
     public static function provideFormatDiffs(): \Generator
     {
-        yield ['- 5 years', 'now', 'diff.ago.year'];
-        yield ['- 10 months', 'now', 'diff.ago.month'];
-        yield ['- 15 days', 'now', 'diff.ago.day'];
-        yield ['- 20 hours', 'now', 'diff.ago.hour'];
-        yield ['- 25 minutes', 'now', 'diff.ago.minute'];
-        yield ['- 30 seconds', 'now', 'diff.ago.second'];
+        yield ['- 5 years', 'now', 'diff.ago.year.plural'];
+        yield ['- 1 year', 'now', 'diff.ago.year.single'];
+        yield ['- 10 months', 'now', 'diff.ago.month.plural'];
+        yield ['- 15 days', 'now', 'diff.ago.day.plural'];
+        yield ['- 20 hours', 'now', 'diff.ago.hour.plural'];
+        yield ['- 25 minutes', 'now', 'diff.ago.minute.plural'];
+        yield ['- 30 seconds', 'now', 'diff.ago.second.plural'];
         yield ['now', 'now', 'diff.empty'];
-        yield ['+ 30 seconds', 'now', 'diff.in.second'];
-        yield ['+ 25 minutes', 'now', 'diff.in.minute'];
-        yield ['+ 20 hours', 'now', 'diff.in.hour'];
-        yield ['+ 15 days', 'now', 'diff.in.day'];
-        yield ['+ 10 months', 'now', 'diff.in.month'];
-        yield ['+ 5 years', 'now', 'diff.in.year'];
-        yield ['+ 5 years', null, 'diff.in.year'];
+        yield ['+ 30 seconds', 'now', 'diff.in.second.plural'];
+        yield ['+ 25 minutes', 'now', 'diff.in.minute.plural'];
+        yield ['+ 20 hours', 'now', 'diff.in.hour.plural'];
+        yield ['+ 15 days', 'now', 'diff.in.day.plural'];
+        yield ['+ 10 months', 'now', 'diff.in.month.plural'];
+        yield ['+ 5 years', 'now', 'diff.in.year.plural'];
+        yield ['+ 5 years', null, 'diff.in.year.plural'];
         yield ['now', null, 'diff.empty'];
     }
 

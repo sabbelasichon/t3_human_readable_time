@@ -6,3 +6,4 @@ composer.lock
 var
 Tests/Build/.phpunit.result.cache
 config
+.ddev

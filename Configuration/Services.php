@@ -25,5 +25,5 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services->load('Ssch\\T3HumanReadableTime\\', __DIR__ . '/../Classes/');
 
     $services->alias(TranslatorInterface::class, ExtbaseLocalizationTranslator::class);
-    $services->alias(DateTimeFormatterInterface::class, DateTimeFormatter::class);
+    $services->alias(DateTimeFormatterInterface::class, DateTimeFormatter::class)->public();
 };

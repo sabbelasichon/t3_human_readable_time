@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" datatype="plaintext" original="messages" date="2023-06-15T11:47:10Z" product-name="t3_human_readable_time">
+        <header/>
+        <body>
+            <trans-unit id="diff.empty" xml:space="preserve">
+                <source>now</source>
+            </trans-unit>
+            <trans-unit id="diff.ago.year.single" xml:space="preserve">
+                <source>1 year ago</source>
+            </trans-unit>
+            <trans-unit id="diff.ago.year.plural" xml:space="preserve">
+                <source>%1$d years ago</source>
+            </trans-unit>
+            <trans-unit id="diff.ago.month.single" xml:space="preserve">
+                <source>1 month ago</source>
+            </trans-unit>
+            <trans-unit id="diff.ago.month.plural" xml:space="preserve">
+                <source>%1$d months ago</source>
+            </trans-unit>
+            <trans-unit id="diff.ago.day.single" xml:space="preserve">
+                <source>1 day ago</source>
+            </trans-unit>
+            <trans-unit id="diff.ago.day.plural" xml:space="preserve">
+                <source>%1$d days ago</source>
+            </trans-unit>
+            <trans-unit id="diff.ago.hour.single" xml:space="preserve">
+                <source>1 hour ago</source>
+            </trans-unit>
+            <trans-unit id="diff.ago.hour.plural" xml:space="preserve">
+                <source>%1$d hours ago</source>
+            </trans-unit>
+            <trans-unit id="diff.ago.minute.single" xml:space="preserve">
+                <source>1 minute ago</source>
+            </trans-unit>
+            <trans-unit id="diff.ago.minute.plural" xml:space="preserve">
+                <source>%1$d minutes ago</source>
+            </trans-unit>
+            <trans-unit id="diff.ago.second.single" xml:space="preserve">
+                <source>1 second ago</source>
+            </trans-unit>
+            <trans-unit id="diff.ago.second.plural" xml:space="preserve">
+                <source>%1$d seconds ago</source>
+            </trans-unit>
+            <trans-unit id="diff.in.second.single" xml:space="preserve">
+                <source>in 1 second</source>
+            </trans-unit>
+            <trans-unit id="diff.in.second.plural" xml:space="preserve">
+                <source>in %1$d seconds</source>
+            </trans-unit>
+            <trans-unit id="diff.in.hour.single" xml:space="preserve">
+                <source>in 1 hour</source>
+            </trans-unit>
+            <trans-unit id="diff.in.hour.plural" xml:space="preserve">
+                <source>in %1$d hours</source>
+            </trans-unit>
+            <trans-unit id="diff.in.minute.single" xml:space="preserve">
+                <source>in 1 minute</source>
+            </trans-unit>
+            <trans-unit id="diff.in.minute.plural" xml:space="preserve">
+                <source>in %1$d minutes</source>
+            </trans-unit>
+            <trans-unit id="diff.in.day.single" xml:space="preserve">
+                <source>in 1 day</source>
+            </trans-unit>
+            <trans-unit id="diff.in.day.plural" xml:space="preserve">
+                <source>in %1$d days</source>
+            </trans-unit>
+            <trans-unit id="diff.in.month.single" xml:space="preserve">
+                <source>in 1 month</source>
+            </trans-unit>
+            <trans-unit id="diff.in.month.plural" xml:space="preserve">
+                <source>in %1$d months</source>
+            </trans-unit>
+            <trans-unit id="diff.in.year.single" xml:space="preserve">
+                <source>in 1 year</source>
+            </trans-unit>
+            <trans-unit id="diff.in.year.plural" xml:space="preserve">
+                <source>in %1$d years</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

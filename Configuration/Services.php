@@ -11,8 +11,8 @@ declare(strict_types=1);
 
 use Ssch\T3HumanReadableTime\Contract\DateTimeFormatterInterface;
 use Ssch\T3HumanReadableTime\Contract\TranslatorInterface;
-use Ssch\T3HumanReadableTime\DateTimeFormatter;
-use Ssch\T3HumanReadableTime\ExtbaseLocalizationTranslator;
+use Ssch\T3HumanReadableTime\Formatter\DateTimeFormatter;
+use Ssch\T3HumanReadableTime\Translator\ExtbaseLocalizationTranslator;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {

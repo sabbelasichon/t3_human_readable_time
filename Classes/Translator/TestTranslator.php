@@ -9,7 +9,7 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Ssch\T3HumanReadableTime;
+namespace Ssch\T3HumanReadableTime\Translator;
 
 use Ssch\T3HumanReadableTime\Contract\TranslatorInterface;
 

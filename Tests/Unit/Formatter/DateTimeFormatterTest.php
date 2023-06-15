@@ -9,12 +9,12 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Ssch\T3HumanReadableTime\Tests\Unit;
+namespace Ssch\T3HumanReadableTime\Tests\Unit\Formatter;
 
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
-use Ssch\T3HumanReadableTime\DateTimeFormatter;
-use Ssch\T3HumanReadableTime\TestTranslator;
+use Ssch\T3HumanReadableTime\Formatter\DateTimeFormatter;
+use Ssch\T3HumanReadableTime\Translator\TestTranslator;
 
 final class DateTimeFormatterTest extends TestCase
 {
